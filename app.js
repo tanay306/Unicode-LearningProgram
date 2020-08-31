@@ -10,12 +10,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost:27017/bussinessDB", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
 
+////////////////////----- Employee Schema -----////////////////////
 const employeeSchema = new mongoose.Schema({
   name : {
     type: String,
     required: [true]
   },
-  contacts: [Number],
+  contacts: Number,
   salary: {
     type: String,
     required: [true]
@@ -27,19 +28,21 @@ const employeeSchema = new mongoose.Schema({
 });
 const Employee = mongoose.model("Employee", employeeSchema);
 
+////////////////////----- Customer Schema -----////////////////////
 const customerSchema = new mongoose.Schema({
     name : {
       type: String,
       required: [true]
     },
-    contacts: [Number],
+    contacts: Number,
     projects: [{
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "Project"
     }]
 });
 const Customer = mongoose.model("Customer", customerSchema);
 
+////////////////////----- Project Schema -----////////////////////
 const projectSchema = new mongoose.Schema({
   name : {
     type: String,
@@ -60,6 +63,8 @@ const projectSchema = new mongoose.Schema({
   }
 });
 const Project = mongoose.model("Project", projectSchema);
+
+////////////////////----- Route for employees -----////////////////////
 
 app.route("/employee")
   .get(async function (req, res) {
@@ -86,6 +91,8 @@ app.route("/employee")
   .delete(async function (req, res) {
     res.send("Delete function is not permitted for this route")
   });
+
+////////////////////----- Route for particular employee  -----////////////////////
 
 app.route("/employee/:employeeId")
   .get(async function (req, res) {
@@ -123,8 +130,74 @@ app.route("/employee/:employeeId")
     }
   });
 
+////////////////////----- Route for customer -----////////////////////
+
+app.route("/customer")
+  .get(async function (req, res) {
+    try {
+      const customer = await Customer.find({});
+      res.send(customer);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  })
+  .post(async function (req, res) {
+    try {
+      const customer = await Customer.create(req.body);
+      res.send(customer);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  })
+  .put(async function (req, res) {
+    res.send("Put function is not permitted for this route");
+  })
+  .delete(async function (req, res) {
+    res.send("Delete function is not permitted for this route")
+  });
+
+////////////////////----- Route for particular customer -----////////////////////
+
+app.route("/customer/:customerId")
+  .get(async function (req, res) {
+    try {
+      const customer = await Customer.findById(req.params.customerId);
+      res.send(customer);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  })
+  .post(async function (req, res) {
+    res.send("Post function is not permitted for this route")
+  })
+  .put(async function (req, res) {
+    try {
+      const customer = await Customer.findByIdAndUpdate(
+        req.params.customerId,
+        {$set: req.body},
+        {new: true}
+      );
+      res.send(customer);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  })
+  .delete(async function (req, res) {
+    try {
+      const employee = await Customer.findByIdAndRemove(req.params.customerId);
+      res.send("Customer successfully removed");
+    }
+    catch (err) {
+      console.log(err);
+    }
+  });
 
 
+////////////////////----- Server has started message -----////////////////////
 
 app.listen(3000, function () {
   console.log("Server has statrted on port 3000");
