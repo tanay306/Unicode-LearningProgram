@@ -17,10 +17,7 @@ const customerRouter = require("./router/customerRouter");
 app.use("/employee", employeeRouter);
 app.use("/customer", customerRouter);
 // app.use("/project", projectRouter);
-app.post("/", function (req, res) {
-  const text = req.body
-  res.send(text);
-})
+
 
 ////////////////////----- Server has started message -----////////////////////
 
