@@ -4,7 +4,7 @@ mongoose.set('useFindAndModify', false);
 
 ////////////////////----- Project Schema -----////////////////////
 
-const projectSchema = new schema({
+const projectSchema = new mongoose.Schema({
   name : {
     type: String,
     required: true
