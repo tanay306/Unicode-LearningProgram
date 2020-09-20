@@ -18,6 +18,6 @@ customerRouter.route("/:customerId")
   .put(customerController.particularCustPut)
   .delete(customerController.particularCustDelete);
 
-////////////////////----- Export -----////////////////////
+////////////////////----- Export customer router -----////////////////////
 
 module.exports = customerRouter;

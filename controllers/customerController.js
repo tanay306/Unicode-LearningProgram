@@ -3,8 +3,12 @@ const Customer = require("../models/customer");
 
 const customerGet = async (req, res) => {
   try {
-    const customer = await Customer.find({});
-    res.send(customer);
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const customer = await Customer.find({});
+      res.send(customer);
+    } else {
+      res.send("Restricted access");
+    }
   }
   catch (err) {
     console.log(err);
@@ -13,8 +17,12 @@ const customerGet = async (req, res) => {
 
 const customerPost = async (req, res) =>{
   try {
-    const customer = await Customer.create(req.body);
-    res.send(customer);
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const customer = await Customer.create(req.body);
+      res.send(customer);
+    } else {
+      res.send("Restricted access");
+    }
   }
   catch (err) {
     console.log(err);
@@ -31,8 +39,12 @@ const customerDelete = async (req, res) => {
 
 const particularCustGet = async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.customerId);
-    res.send(customer);
+    if (req.isAuthenticated() && req.user.role !== "employee") {
+      const customer = await Customer.findById(req.params.customerId);
+      res.send(customer);
+    } else {
+      res.send("Restricted access");
+    }
   }
   catch (err) {
     console.log(err);
@@ -45,8 +57,12 @@ const particularCustPost = async (req, res) => {
 
 const particularCustPut = async (req, res) => {
   try {
-    const customer = await Customer.findByIdAndUpdate(req.params.customerId, {$set: req.body}, {new: true});
-    res.send(customer);
+    if (req.isAuthenticated() && req.user.role !== "employee") {
+      const customer = await Customer.findByIdAndUpdate(req.params.customerId, {$set: req.body}, {new: true});
+      res.send(customer);
+    } else {
+      res.send("Restricted access");
+    }
   }
   catch (err) {
     console.log(err);
@@ -55,8 +71,12 @@ const particularCustPut = async (req, res) => {
 
 const particularCustDelete = async (req, res) => {
   try {
-    const employee = await Customer.findByIdAndRemove(req.params.customerId);
-    res.send("Customer successfully removed");
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const customer = await Customer.findByIdAndRemove(req.params.customerId);
+      res.send("Customer successfully removed");
+    } else {
+        res.send("Restricted access");
+    }
   }
   catch (err) {
     console.log(err);

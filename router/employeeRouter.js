@@ -18,6 +18,6 @@ employeeRouter.route("/:employeeId")
   .put(employeeController.particularEmpPut)
   .delete(employeeController.particularEmpDelete);
 
-////////////////////----- Export  -----////////////////////
+////////////////////----- Export employee router  -----////////////////////
 
 module.exports = employeeRouter;

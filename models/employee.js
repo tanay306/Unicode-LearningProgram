@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 mongoose.set('useFindAndModify', false);
+const passportLocalMongoose = require("passport-local-mongoose");
 
 ////////////////////----- Employee Schema -----////////////////////
 
@@ -19,6 +20,9 @@ const employeeSchema = new mongoose.Schema({
     ref: "Project"
   }]
 });
+
+employeeSchema.plugin(passportLocalMongoose);
+
 
 ////////////////////----- Export -----////////////////////
 
