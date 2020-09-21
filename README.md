@@ -14,10 +14,10 @@ Tasks for Unicode learning period
 ```
 ## Usage
 ```
-npm start
+node app.js
 ```
 ## Endpoints
-All root endpoints have their separate router in `./routes` folder
+All root endpoints have their separate router in `./router` folder
 
 |Endpoints              |Description                                                                    |Methods               |
 |-----------------------|-------------------------------------------------------------------------------|----------------------|
