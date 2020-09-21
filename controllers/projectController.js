@@ -3,8 +3,12 @@ const Project = require("../models/projects");
 
 const projectGet = async (req, res) => {
   try {
-    const projects = await Project.find().populate("customer employee");
-    res.send(projects);
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const projects = await Project.find().populate("customer employee");
+      res.send(projects);
+    } else {
+      res.send("Restricted access");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -12,8 +16,12 @@ const projectGet = async (req, res) => {
 
 const projectPost = async (req, res) => {
   try {
-    const project = await Project.create(req.body);
-    res.send(project);
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const project = await Project.create(req.body);
+      res.send(project);
+    } else {
+      res.send("Restricted access");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -29,8 +37,12 @@ const projectDelete = async (req, res) => {
 
 const particularProjectGet = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.projectId).populate("customer employee");
-    res.send(project);
+    if (req.isAuthenticated()) {
+      const project = await Project.findById(req.params.projectId).populate("customer employee");
+      res.send(project);
+    } else {
+      res.send("Restricted access");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -42,8 +54,12 @@ const particularProjectPost = async (req, res) => {
 
 const particularProjectPut = async (req, res) => {
   try {
-    const project = await Project.findByIdAndUpdate(req.params.projectId, {$set: req.body}, {new:true});
-    res.send(project);
+    if (req.isAuthenticated() && req.user.role === "admin") {
+      const project = await Project.findByIdAndUpdate(req.params.projectId, {$set: req.body}, {new:true});
+      res.send(project);
+    } else {
+      res.send("Restricted access");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -51,8 +67,12 @@ const particularProjectPut = async (req, res) => {
 
 const particularProjectDelete = async (req, res) => {
   try {
-    const project = await Project.findByIdAndRemove(req.params.projectId);
-    res.send("Employee successfully removed");
+    if (req.isAuthenticated() && req.body.role === "admin") {
+      const project = await Project.findByIdAndRemove(req.params.projectId);
+      res.send("Employee successfully removed");
+    } else {
+      res.send("Restricted access");
+    }
   } catch (err) {
     console.log(err);
   }
