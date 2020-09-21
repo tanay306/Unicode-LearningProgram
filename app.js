@@ -41,6 +41,7 @@ passport.deserializeUser((id, done) => {
 
 /////--requiring all routes--/////
 
+const indexRouter = require("./router/indexRouter");
 const employeeRouter = require("./router/employeeRouter");
 const customerRouter = require("./router/customerRouter");
 const projectRouter = require("./router/projectRouter");
@@ -50,6 +51,7 @@ const signOutRouter = require("./router/signOutRouter");
 
 /////--using all routes--/////
 
+app.use("/", indexRouter);
 app.use("/employee", employeeRouter);
 app.use("/customer", customerRouter);
 app.use("/project", projectRouter);
