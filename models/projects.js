@@ -27,7 +27,6 @@ const projectSchema = new mongoose.Schema({
 
 projectSchema.plugin(passportLocalMongoose);
 
-
 ////////////////////----- Export -----////////////////////
 
 module.exports = mongoose.model("Project", projectSchema);
