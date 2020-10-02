@@ -1,22 +1,33 @@
-const express = require("express");
+const express = require('express');
 const customerRouter = express.Router();
-const customerController = require("../controllers/customerController");
+const {
+  customerGet,
+  customerPost,
+  customerPut,
+  customerDelete,
+  particularCustGet,
+  particularCustPost,
+  particularCustPut,
+  particularCustDelete,
+} = require('../controllers/customerController');
 
 ////////////////////----- Route for customer -----////////////////////
 
-customerRouter.route("/")
-  .get(customerController.customerGet)
-  .post(customerController.customerPost)
-  .put(customerController.customerPut)
-  .delete(customerController.customerDelete);
+customerRouter
+  .route('/')
+  .get(customerGet)
+  .post(customerPost)
+  .put(customerPut)
+  .delete(customerDelete);
 
 ////////////////////----- Route for particular customer -----////////////////////
 
-customerRouter.route("/:customerId")
-  .get(customerController.particularCustGet)
-  .post(customerController.particularCustPost)
-  .put(customerController.particularCustPut)
-  .delete(customerController.particularCustDelete);
+customerRouter
+  .route('/:customerId')
+  .get(particularCustGet)
+  .post(particularCustPost)
+  .put(particularCustPut)
+  .delete(particularCustDelete);
 
 ////////////////////----- Export customer router -----////////////////////
 
