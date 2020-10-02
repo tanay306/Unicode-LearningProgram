@@ -6,7 +6,8 @@ Tasks for Unicode learning period
 ```
 .
 ├── .gitignore              -> Git ignore file for node_modules and vscode configs
-├── controllers/            -> contains functions related to each route
+├── config/                 -> Contains passport queries
+├── controllers/            -> Contains functions related to each route
 ├── models/                 -> Contains DB models
 ├── routes/                 -> Files exporting respective routers for each endpoint)
 ├── app.js                  -> Connects to DB, Sets up express app with routers, middlewares etc and exports it
