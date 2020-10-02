@@ -26,12 +26,12 @@ All root endpoints have their separate router in `./router` folder
 |/signIn                |Sign In page                                                                   |POST                  |
 |/signUp                |Sign Up page                                                                   |GET, POST             |
 |/signOut               |Sign Out page                                                                  |POST                  |
-|/employee             |List of all emplloyees                                                         |GET, POST, DELETE     |
-|/employee/:employeeId |Details of specified employee                                                  |GET, PUT, DELETE      |
-|/project              |List of all projects                                                           |GET, POST, DELETE     |
-|/project/:projectId   |Details of specified project                                                   |GET, PUT, DELETE      |
-|/customer             |List of all customers                                                          |GET, POST, DELETE     |
-|/customer/:customerId |Details of specified customer                                                  |GET, PUT, DELETE      |
+|/employee             |List of all emplloyees                                                          |GET, POST             |
+|/employee/:employeeId |Details of specified employee                                                   |GET, PUT, DELETE      |
+|/project              |List of all projects                                                            |GET, POST             |
+|/project/:projectId   |Details of specified project                                                    |GET, PUT, DELETE      |
+|/customer             |List of all customers                                                           |GET, POST             |
+|/customer/:customerId |Details of specified customer                                                   |GET, PUT, DELETE      |
 
 The get request on the sign up page is basically to check if the user is authenticated or not. All the routes pertaining to the employees, projects and customers require authentication.
 
