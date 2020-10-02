@@ -1,32 +1,36 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
-const passportLocalMongoose = require("passport-local-mongoose");
+const passportLocalMongoose = require('passport-local-mongoose');
 
 ////////////////////----- Project Schema -----////////////////////
 
 const projectSchema = new mongoose.Schema({
-  name : {
+  name: {
     type: String,
-    required: true
+    required: true,
   },
-  customer: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer",
-    required: true
-  }],
-  employee: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Employee"
-  }],
+  customer: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customer',
+      required: true,
+    },
+  ],
+  employee: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Employee',
+    },
+  ],
   startDate: {
     type: [Date],
-    required: true
-  }
+    required: true,
+  },
 });
 
 projectSchema.plugin(passportLocalMongoose);
 
 ////////////////////----- Export -----////////////////////
 
-module.exports = mongoose.model("Project", projectSchema);
+module.exports = mongoose.model('Project', projectSchema);

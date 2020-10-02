@@ -1,22 +1,33 @@
-const express = require("express");
+const express = require('express');
 const employeeRouter = express.Router();
-const employeeController = require("../controllers/employeeController");
+const {
+  employeeGet,
+  employeePost,
+  employeePut,
+  employeeDelete,
+  particularEmpGet,
+  particularEmpPost,
+  particularEmpPut,
+  particularEmpDelete,
+} = require('../controllers/employeeController');
 
 ////////////////////----- Route for employees -----////////////////////
 
-employeeRouter.route("/")
-  .get(employeeController.employeeGet)
-  .post(employeeController.employeePost)
-  .put(employeeController.employeePut)
-  .delete(employeeController.employeeDelete);
+employeeRouter
+  .route('/')
+  .get(employeeGet)
+  .post(employeePost)
+  .put(employeePut)
+  .delete(employeeDelete);
 
 ////////////////////----- Route for particular employee  -----////////////////////
 
-employeeRouter.route("/:employeeId")
-  .get(employeeController.particularEmpGet)
-  .post(employeeController.particularEmpPost)
-  .put(employeeController.particularEmpPut)
-  .delete(employeeController.particularEmpDelete);
+employeeRouter
+  .route('/:employeeId')
+  .get(particularEmpGet)
+  .post(particularEmpPost)
+  .put(particularEmpPut)
+  .delete(particularEmpDelete);
 
 ////////////////////----- Export employee router  -----////////////////////
 

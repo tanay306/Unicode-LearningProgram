@@ -1,18 +1,20 @@
-const express = require("express");
-const session = require("express-session");
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-const User = require("../models/user");
+const express = require('express');
 const signInRouter = express.Router();
-const signInController = require("../controllers/signInController");
+const {
+  signInGet,
+  signInPost,
+  signInPut,
+  signInDelete,
+} = require('../controllers/signInController');
 
 ////////////////////----- Route for sign in -----////////////////////
 
-signInRouter.route("/")
-  .get(signInController.signInGet)
-  .post(signInController.signInPost)
-  .put(signInController.signInPut)
-  .delete(signInController.signInDelete);
+signInRouter
+  .route('/')
+  .get(signInGet)
+  .post(signInPost)
+  .put(signInPut)
+  .delete(signInDelete);
 
 ////////////////////----- Export sign in  router -----////////////////////
 

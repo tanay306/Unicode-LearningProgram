@@ -1,22 +1,33 @@
-const express = require("express");
+const express = require('express');
 const projectRouter = express.Router();
-const projectController = require("../controllers/projectController");
+const {
+  projectGet,
+  projectPost,
+  projectPut,
+  projectDelete,
+  particularProjectGet,
+  particularProjectPost,
+  particularProjectPut,
+  particularProjectDelete,
+} = require('../controllers/projectController');
 
 ////////////////////----- Route for projects -----////////////////////
 
-projectRouter.route("/")
-  .get(projectController.projectGet)
-  .post(projectController.projectPost)
-  .put(projectController.projectPut)
-  .delete(projectController.projectDelete);
+projectRouter
+  .route('/')
+  .get(projectGet)
+  .post(projectPost)
+  .put(projectPut)
+  .delete(projectDelete);
 
 ////////////////////----- Route for particular project  -----////////////////////
 
-projectRouter.route("/:projectId")
-  .get(projectController.particularProjectGet)
-  .post(projectController.particularProjectPost)
-  .put(projectController.particularProjectPut)
-  .delete(projectController.particularProjectDelete);
+projectRouter
+  .route('/:projectId')
+  .get(particularProjectGet)
+  .post(particularProjectPost)
+  .put(particularProjectPut)
+  .delete(particularProjectDelete);
 
 ////////////////////----- Export project router -----////////////////////
 
