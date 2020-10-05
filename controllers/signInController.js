@@ -3,9 +3,14 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const User = require('../models/user');
+const ejs = require('ejs');
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.set('view engine', 'ejs');
 
 const signInGet = (req, res) => {
-  res.send('Get function is not permitted for this route');
+  // res.send('Get function is not permitted for this route');
+  res.render('signIn');
 };
 
 const signInPost = (req, res) => {

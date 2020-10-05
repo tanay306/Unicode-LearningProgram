@@ -1,5 +1,13 @@
 const express = require('express');
 const Employee = require('../models/employee');
+const ejs = require('ejs');
+const path = require('path');
+const { storage, upload } = require('../config/multer');
+
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use('/public', express.static('public'));
+app.set('view engine', 'ejs');
 
 const employeeGet = async (req, res) => {
   try {
@@ -71,7 +79,7 @@ const particularEmpPut = async (req, res) => {
 
 const particularEmpDelete = async (req, res) => {
   try {
-    if (req.isAuthenticated() && req.user.role === 'admin') {
+    if (req.isAuthenticated() && req.user.role == 'admin') {
       const employee = await Employee.findByIdAndRemove(req.params.employeeId);
       res.send('Employee successfully removed');
     } else {
@@ -79,6 +87,28 @@ const particularEmpDelete = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+  }
+};
+
+const uploadResumeGet = (req, res) => {
+  if (req.isAuthenticated() && req.user.role == 'employee') {
+    res.render('index');
+  } else {
+    res.send('Restricted access');
+  }
+};
+
+const uploadResumePost = (req, res) => {
+  if (req.isAuthenticated() && req.user.role == 'employee') {
+    upload(req, res, (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Successfully uploaded pdf');
+      }
+    });
+  } else {
+    res.send('Restricted access');
   }
 };
 
@@ -91,4 +121,6 @@ module.exports = {
   particularEmpPut,
   particularEmpPost,
   particularEmpDelete,
+  uploadResumeGet,
+  uploadResumePost,
 };
