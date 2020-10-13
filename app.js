@@ -3,11 +3,20 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const ejs = require('ejs');
+const path = require('path');
+const multer = require('multer');
+
+/////--require multer storage and upload--/////
+
+const { storage, upload } = require('./config/multer');
 
 /////--engine setup--/////
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+app.use('/public', express.static('public'));
+app.set('view engine', 'ejs');
 app.use(
   session({
     secret: 'tanay',
@@ -43,10 +52,12 @@ const projectRouter = require('./router/projectRouter');
 const signInRouter = require('./router/signInRouter');
 const signUpRouter = require('./router/signUpRouter');
 const signOutRouter = require('./router/signOutRouter');
+const adminRouter = require('./router/adminRouter');
 
 /////--using all routes--/////
 
 app.use('/', indexRouter);
+app.use('/', adminRouter);
 app.use('/employee', employeeRouter);
 app.use('/customer', customerRouter);
 app.use('/project', projectRouter);
