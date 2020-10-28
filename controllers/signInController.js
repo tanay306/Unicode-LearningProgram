@@ -14,6 +14,7 @@ const signInGet = (req, res) => {
 };
 
 const signInPost = (req, res) => {
+  res.statusCode = 200;
   const user = new User({
     username: req.body.username,
     password: req.body.password,
@@ -30,10 +31,12 @@ const signInPost = (req, res) => {
 };
 
 const signInPut = (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
 const signInDelete = (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 

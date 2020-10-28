@@ -10,14 +10,17 @@ const signOutGet = (req, res) => {
 };
 
 const signOutPost = (req, res) => {
+  res.statusCode = 403;
   res.send('Post function is not permitted for this route');
 };
 
 const signOutPut = (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
 const signOutDelete = (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 

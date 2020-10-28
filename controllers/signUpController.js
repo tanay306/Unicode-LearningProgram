@@ -34,10 +34,12 @@ const signUpPost = (req, res) => {
 };
 
 const signUpPut = (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
 const signUpDelete = (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 

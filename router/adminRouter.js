@@ -8,14 +8,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/public', express.static('public'));
 app.set('view engine', 'ejs');
 
-////////////////////----- Route for admin to get resume -----////////////////////
-
 const {
   getResumeGet,
   getResumePost,
+  getResumePut,
+  getResumeDelete
 } = require('../controllers/adminController');
 
-adminRouter.route('/getResume').get(getResumeGet).post(getResumePost);
+////////////////////----- Route for admin to get resume -----////////////////////
+
+adminRouter.route('/getResume')
+  .get(getResumeGet)
+  .post(getResumePost)
+  .put(getResumePut)
+  .delete(getResumeDelete);
 
 ////////////////////----- Export admin router -----////////////////////
 

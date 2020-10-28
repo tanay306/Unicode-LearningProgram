@@ -36,7 +36,19 @@ const getResumePost = (req, res) => {
   }
 };
 
+const getResumePut = (req, res) => {
+  res.statusCode = 403;
+  res.send('Put function is not permitted for this route');
+};
+
+const getResumeDelete = (req, res) => {
+  res.statusCode = 403;
+  res.send('Delete function is not permitted for this route');
+};
+
 module.exports = {
   getResumeGet,
   getResumePost,
+  getResumePut,
+  getResumeDelete
 };

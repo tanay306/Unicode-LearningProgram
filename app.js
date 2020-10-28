@@ -70,3 +70,5 @@ app.use('/signUp', signUpRouter);
 app.listen(3000, () => {
   console.log('Server has statrted on port 3000');
 });
+
+module.exports = app;

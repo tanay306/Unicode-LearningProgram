@@ -23,6 +23,7 @@ const employeeGet = async (req, res) => {
 };
 
 const employeePut = async (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
@@ -40,6 +41,7 @@ const employeePost = async (req, res) => {
 };
 
 const employeeDelete = async (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 
@@ -57,6 +59,7 @@ const particularEmpGet = async (req, res) => {
 };
 
 const particularEmpPost = async (req, res) => {
+  res.statusCode = 403;
   res.send('Post function is not permitted for this route');
 };
 
@@ -112,6 +115,16 @@ const uploadResumePost = (req, res) => {
   }
 };
 
+const uploadResumePut = (req, res) => {
+  res.statusCode = 403;
+  res.send('Put function is not permitted for this route');
+};
+
+const uploadResumeDelete = (req, res) => {
+  res.statusCode = 403;
+  res.send('Delete function is not permitted for this route');
+};
+
 module.exports = {
   employeeGet,
   employeePut,
@@ -123,4 +136,6 @@ module.exports = {
   particularEmpDelete,
   uploadResumeGet,
   uploadResumePost,
+  uploadResumePut,
+  uploadResumeDelete
 };

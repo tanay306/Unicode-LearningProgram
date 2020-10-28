@@ -11,6 +11,8 @@ const {
   particularEmpDelete,
   uploadResumeGet,
   uploadResumePost,
+  uploadResumePut,
+  uploadResumeDelete
 } = require('../controllers/employeeController');
 
 ////////////////////----- Route for employees -----////////////////////
@@ -36,7 +38,9 @@ employeeRouter
 employeeRouter
   .route('/:employeeId/upload')
   .get(uploadResumeGet)
-  .post(uploadResumePost);
+  .post(uploadResumePost)
+  .put(uploadResumePut)
+  .delete(uploadResumeDelete);
 
 ////////////////////----- Export employee router  -----////////////////////
 
