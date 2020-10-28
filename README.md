@@ -9,7 +9,11 @@ Tasks for Unicode learning period
 ├── config/                 -> Contains passport queries
 ├── controllers/            -> Contains functions related to each route
 ├── models/                 -> Contains DB models
-├── routes/                 -> Files exporting respective routers for each endpoint)
+├── public/uploads/         -> Contains file upload and handing using multer
+├── router/                 -> Files exporting respective routers for each endpoint)
+├── screenshot/             -> Contains screenshots for readme
+├── test/                   -> Contains testing for routes
+├── views/                  -> Contains GUI files
 ├── app.js                  -> Connects to DB, Sets up express app with routers, middlewares etc and exports it
 └── package.json            -> Npm package.json file
 ```
@@ -20,18 +24,20 @@ node app.js
 ## Endpoints
 All root endpoints have their separate router in `./router` folder
 
-|Endpoints              |Description                                                                    |Methods               |
-|-----------------------|-------------------------------------------------------------------------------|----------------------|
-|/                      |Index page                                                                     |GET                   |
-|/signIn                |Sign In page                                                                   |POST                  |
-|/signUp                |Sign Up page                                                                   |GET, POST             |
-|/signOut               |Sign Out page                                                                  |POST                  |
-|/employee             |List of all emplloyees                                                          |GET, POST             |
-|/employee/:employeeId |Details of specified employee                                                   |GET, PUT, DELETE      |
-|/project              |List of all projects                                                            |GET, POST             |
-|/project/:projectId   |Details of specified project                                                    |GET, PUT, DELETE      |
-|/customer             |List of all customers                                                           |GET, POST             |
-|/customer/:customerId |Details of specified customer                                                   |GET, PUT, DELETE      |
+|Endpoints                    |Description                                                                      |Methods               |
+|-----------------------------|---------------------------------------------------------------------------------|----------------------|
+|/                            |Index page                                                                       |GET                   |
+|/signIn                      |Sign In page                                                                     |POST                  |
+|/signUp                      |Sign Up page                                                                     |GET, POST             |
+|/signOut                     |Sign Out page                                                                    |POST                  |
+|/employee                    |List of all emplloyees                                                           |GET, POST             |
+|/employee/:employeeId        |Details of specified employee                                                    |GET, PUT, DELETE      |
+|/project                     |List of all projects                                                             |GET, POST             |
+|/project/:projectId          |Details of specified project                                                     |GET, PUT, DELETE      |
+|/customer                    |List of all customers                                                            |GET, POST             |
+|/customer/:customerId        |Details of specified customer                                                    |GET, PUT, DELETE      |
+|/employee/:employeeId/upload |Uploading resume of employee                                                     |GET, POST             |
+|/getResume                   |Resume of particular employee                                                    |GET, POST             |
 
 The get request on the sign up page is basically to check if the user is authenticated or not. All the routes pertaining to the employees, projects and customers require authentication.
 
