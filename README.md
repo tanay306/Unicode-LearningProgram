@@ -22,7 +22,7 @@ Tasks for Unicode learning period
 node app.js
 ```
 ## Endpoints
-All root endpoints have their separate router in `./router` folder
+All root endpoints have their separate router in `./controllers` folder
 
 |Endpoints                    |Description                                                                      |Methods               |
 |-----------------------------|---------------------------------------------------------------------------------|----------------------|
