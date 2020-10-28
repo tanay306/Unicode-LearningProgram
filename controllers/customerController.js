@@ -28,10 +28,12 @@ const customerPost = async (req, res) => {
 };
 
 const customerPut = async (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
 const customerDelete = async (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 
@@ -49,6 +51,7 @@ const particularCustGet = async (req, res) => {
 };
 
 const particularCustPost = async (req, res) => {
+  res.statusCode = 403;
   res.send('Post function is not permitted for this route');
 };
 

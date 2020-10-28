@@ -28,10 +28,12 @@ const projectPost = async (req, res) => {
 };
 
 const projectPut = async (req, res) => {
+  res.statusCode = 403;
   res.send('Put function is not permitted for this route');
 };
 
 const projectDelete = async (req, res) => {
+  res.statusCode = 403;
   res.send('Delete function is not permitted for this route');
 };
 
@@ -51,6 +53,7 @@ const particularProjectGet = async (req, res) => {
 };
 
 const particularProjectPost = async (req, res) => {
+  res.statusCode = 403;
   res.send('Post function is not permitted for this route');
 };
 
